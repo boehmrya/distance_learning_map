@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="css/normalize.css" rel="stylesheet">
+  <link href="css/general.css" rel="stylesheet">
+  <link href="css/select2.min.css" rel="stylesheet">
+  <link href="css/map.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="state-funds-map__outer-wrap">
+    <!--<div class="state-funds-map__text">Select your state to display state infrastructure data.</div>-->
+
+    <div class="state-funds-map__content">
+      <div class="state-funds-map__data-col">
+        <div class="state-funds-map__state-filter">
+          <form action="/" id="stateFilterForm" method="get">
+            <select id="filterFormStateSelect">
+              <option selected="selected" value="US">National</option>
+              <option value="AL">Alabama</option>
+              <option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option>
+              <option value="AR">Arkansas</option>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="DE">Delaware</option>
+              <option value="DC">District of Columbia</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option>
+              <option value="ID">Idaho</option>
+              <option value="IL">Illinois</option>
+              <option value="IN">Indiana</option>
+              <option value="IA">Iowa</option>
+              <option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option>
+              <option value="LA">Louisiana</option>
+              <option value="ME">Maine</option>
+              <option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option>
+              <option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option>
+              <option value="MS">Mississippi</option>
+              <option value="MO">Missouri</option>
+              <option value="MT">Montana</option>
+              <option value="NE">Nebraska</option>
+              <option value="NV">Nevada</option>
+              <option value="NH">New Hampshire</option>
+              <option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option>
+              <option value="NY">New York</option>
+              <option value="NC">North Carolina</option>
+              <option value="ND">North Dakota</option>
+              <option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="RI">Rhode Island</option>
+              <option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+              <option value="UT">Utah</option>
+              <option value="VT">Vermont</option>
+              <option value="VA">Virginia</option>
+              <option value="WA">Washington</option>
+              <option value="WV">West Virginia</option>
+              <option value="WI">Wisconsin</option>
+              <option value="WY">Wyoming</option>
+            </select>
+          </form>
+        </div>
+
+        <div class="state-funds-map__data-col-sections-wrap">
+          <div class="state-funds-map__data-col-section">
+            <h3 class="state-funds-map__data-col-title">Treasury ARPA State & <br>Local Fiscal Recovery Funds</h3>
+            <div class="state-funds-map__data-col-text">(total funding available for broadband, water, or sewer, at state’s discretion)</div>
+            <div class="state-funds-map__data-col-content">
+              <div class="state-funds-map__data-col-item"><span id="treasury-arpa-states-label" class="state-funds-map__data-col-item-label">State:</span> <span id="treasury-arpa-state">$195,300,000,000</span></div>
+              <div class="state-funds-map__data-col-item"><span class="state-funds-map__data-col-item-label">Counties:</span> <span id="treasury-arpa-counties">$64,405,083,428</span></div>
+              <div class="state-funds-map__data-col-item"><span class="state-funds-map__data-col-item-label">Metro Cities:</span> <span id="treasury-arpa-metro-cities">$44,768,889,940</span></div>
+              <div class="state-funds-map__data-col-item"><span class="state-funds-map__data-col-item-label">Units:</span> <span id="treasury-arpa-units">$19,365,865,890</span></div>
+              <div class="state-funds-map__data-col-item"><span class="state-funds-map__data-col-item-label">Total:</span> <span id="treasury-arpa-total">$323,839,839,258</span></div>
+            </div>
+          </div>
+
+          <div class="state-funds-map__data-col-section">
+            <h3 class="state-funds-map__data-col-title">Treasury Capital Projects Fund</h3>
+            <div class="state-funds-map__data-col-content">
+              <div class="state-funds-map__data-col-item"><span id="treasury-capital-fund">$9,641,689,944</span></div>
+            </div>
+          </div>
+
+          <div class="state-funds-map__data-col-section">
+            <h3 class="state-funds-map__data-col-title">Universal Service Fund</h3>
+            <div class="state-funds-map__data-col-content">
+              <div class="state-funds-map__data-col-item"><span class="state-funds-map__data-col-item-label">RDOF Phase I (10 Years):</span><br> <span id="usf-rdof-phase-one">$9,215,787,981</span></div>
+              <div class="state-funds-map__data-col-item"><span class="state-funds-map__data-col-item-label">High-Cost Support (2020):</span><br> <span id="usf-high-cost-support">$4,895,641,284</span></div>
+            </div>
+          </div>
+
+          <div class="state-funds-map__data-col-section">
+            <h3 class="state-funds-map__data-col-title">RUS ReConnect</h3>
+            <div class="state-funds-map__data-col-content">
+              <div class="state-funds-map__data-col-item"><span id="rus-reconnect">$854,489,214</span></div>
+            </div>
+          </div>
+
+          <div class="state-funds-map__data-col-section">
+            <h3 class="state-funds-map__data-col-title">Grand Total</h3>
+            <div class="state-funds-map__data-col-content">
+              <div class="state-funds-map__data-col-item"><span id="grand-total">$348,447,447,681</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="state-funds-map__wrap">
+        <div class="state-funds-map"></div>
+
+        <div class="small-states-wrap">
+          <div class="small-state">
+           <div id="NH-Box" class="small-state__box"></div>
+           <div class="small-state__box-text">NH</div>
+          </div>
+          <div class="small-state">
+            <div id="VT-Box" class="small-state__box"></div>
+            <div class="small-state__box-text">VT</div>
+          </div>
+          <div class="small-state">
+            <div id="MA-Box" class="small-state__box"></div>
+            <div class="small-state__box-text">MA</div>
+          </div>
+          <div class="small-state">
+            <div id="RI-Box" class="small-state__box"></div>
+            <div class="small-state__box-text">RI</div>
+          </div>
+          <div class="small-state">
+            <div id="CT-Box" class="small-state__box"></div>
+            <div class="small-state__box-text">CT</div>
+          </div>
+          <div class="small-state">
+            <div id="NJ-Box" class="small-state__box"></div>
+            <div class="small-state__box-text">NJ</div>
+          </div>
+          <div class="small-state">
+            <div id="DE-Box" class="small-state__box"></div>
+            <div class="small-state__box-text">DE</div>
+          </div>
+          <div class="small-state">
+            <div id="MD-Box" class="small-state__box"></div>
+            <div class="small-state__box-text">MD</div>
+          </div>
+          <div class="small-state">
+            <div id="DC-Box" class="small-state__box"></div>
+            <div class="small-state__box-text">DC</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--
+    <div class="state-funds-map__notes-section">
+      <h3 class="state-funds-map__notes-title">Notes:</h3>
+      <div class="state-funds-map__notes-wrap">
+        <div class="state-funds-map__note">* The $9.2 billion for RDOF represents the initial funding grants. Upon subsequent review, some areas have been deemed to be already served and others are being contested, so the ultimate grants will be some lesser amount. An additional $11.2 billion is available within the RDOF program for the Phase II round.</div>
+        <div class="state-funds-map__note">* Alaska's High-Cost Support amount includes $128.3 million of Alaska Plan funding; the Alaska Plan initially set aside $1.5 billion over 10 years, and five years are remaining on the program.</div>
+      </div>
+    </div>
+    -->
+
+  </div>
+
+  <script type="application/json" id="state-funds-data">
+{"AL": {"arpa_state": "$2,120,279,417", "arpa_counties": "$952,386,209", "arpa_metro_cities": "$430,650,620", "arpa_units": "$356,382,822", "arpa_total": "$3,859,699,068", "treasury_capital_fund": "$191,887,857", "rdof_phase_one": "$330,804,828", "high_cost_support": "$91,776,553", "rus_reconnect": "$37,460,616", "grand_total": "$4,511,628,921"}, "AK": {"arpa_state": "$1,011,788,220", "arpa_counties": "$142,094,040", "arpa_metro_cities": "$52,928,564", "arpa_units": "$43,189,176", "arpa_total": "$1,250,000,000", "treasury_capital_fund": "$111,803,893", "rdof_phase_one": "$0", "high_cost_support": "$168,635,227", "rus_reconnect": "$74,788,964", "grand_total": "$1,605,228,084"}, "AZ": {"arpa_state": "$4,182,827,492", "arpa_counties": "$1,413,805,450", "arpa_metro_cities": "$1,003,151,239", "arpa_units": "$226,731,767", "arpa_total": "$6,826,515,948", "treasury_capital_fund": "$190,220,002", "rdof_phase_one": "$195,847,668", "high_cost_support": "$80,863,475", "rus_reconnect": "$14,888,466", "grand_total": "$7,308,335,559"}, "AR": {"arpa_state": "$1,573,121,581", "arpa_counties": "$586,173,048", "arpa_metro_cities": "$208,848,763", "arpa_units": "$216,225,138", "arpa_total": "$2,584,368,530", "treasury_capital_fund": "$158,086,576", "rdof_phase_one": "$424,243,218", "high_cost_support": "$119,642,003", "rus_reconnect": "$11,855,880", "grand_total": "$3,298,196,206"}, "CA": {"arpa_state": "$27,017,016,860", "arpa_counties": "$7,674,786,119", "arpa_metro_cities": "$7,004,519,561", "arpa_units": "$1,218,261,277", "arpa_total": "$42,914,583,817", "treasury_capital_fund": "$540,249,909", "rdof_phase_one": "$695,158,129", "high_cost_support": "$159,677,013", "rus_reconnect": "N/A", "grand_total": "$44,309,668,868"}, "CO": {"arpa_state": "$3,828,761,790", "arpa_counties": "$1,118,566,954", "arpa_metro_cities": "$551,290,906", "arpa_units": "$265,396,436", "arpa_total": "$5,764,016,086", "treasury_capital_fund": "$170,751,674", "rdof_phase_one": "$249,833,710", "high_cost_support": "$63,901,638", "rus_reconnect": "$22,926,890", "grand_total": "$6,271,429,998"}, "CT ": {"arpa_state": "$2,812,288,082", "arpa_counties": "$692,515,202", "arpa_metro_cities": "$661,392,193", "arpa_units": "$202,744,874", "arpa_total": "$4,368,940,351", "treasury_capital_fund": "$141,932,612", "rdof_phase_one": "$4,210,411", "high_cost_support": "$435,139", "rus_reconnect": "N/A", "grand_total": "$4,515,518,513"}, "DE": {"arpa_state": "$924,597,608", "arpa_counties": "$189,142,241", "arpa_metro_cities": "$63,965,037", "arpa_units": "$90,583,517", "arpa_total": "$1,268,288,403", "treasury_capital_fund": "$112,839,386", "rdof_phase_one": "$13,300,968", "high_cost_support": "$301,509", "rus_reconnect": "N/A", "grand_total": "$1,394,730,266"}, "DC": {"arpa_state": "$1,802,441,116", "arpa_counties": "$137,083,470", "arpa_metro_cities": "$372,859,344", "arpa_units": "$0", "arpa_total": "$2,312,383,930", "treasury_capital_fund": "$106,967,456", "rdof_phase_one": "$0", "high_cost_support": "$0", "rus_reconnect": "N/A", "grand_total": "$2,419,351,386"}, "FL": {"arpa_state": "$8,816,581,839", "arpa_counties": "$4,171,798,633", "arpa_metro_cities": "$1,517,703,957", "arpa_units": "$1,416,425,123", "arpa_total": "$15,922,509,552", "treasury_capital_fund": "$366,036,869", "rdof_phase_one": "$191,751,820", "high_cost_support": "$41,546,064", "rus_reconnect": "N/A", "grand_total": "$16,521,844,304"}, "GA": {"arpa_state": "$4,853,535,460", "arpa_counties": "$2,072,390,644", "arpa_metro_cities": "$576,059,064", "arpa_units": "$861,827,586", "arpa_total": "$8,363,812,754", "treasury_capital_fund": "$259,875,389", "rdof_phase_one": "$326,454,112", "high_cost_support": "$120,486,973", "rus_reconnect": "$38,324,056", "grand_total": "$9,108,953,284"}, "HI": {"arpa_state": "$1,641,602,610", "arpa_counties": "$275,016,538", "arpa_metro_cities": "$196,954,703", "arpa_units": "$46,191,175", "arpa_total": "$2,159,765,026", "treasury_capital_fund": "$115,475,318", "rdof_phase_one": "$24,740,782", "high_cost_support": "$8,056,446", "rus_reconnect": "N/A", "grand_total": "$2,308,037,572"}, "ID": {"arpa_state": "$1,094,018,353", "arpa_counties": "$347,116,427", "arpa_metro_cities": "$123,848,501", "arpa_units": "$107,940,808", "arpa_total": "$1,672,924,089", "treasury_capital_fund": "$128,518,323", "rdof_phase_one": "$112,489,828", "high_cost_support": "$55,925,013", "rus_reconnect": "$31,848,137", "grand_total": "$2,001,705,390"}, "IL": {"arpa_state": "$8,127,679,949", "arpa_counties": "$2,461,352,676", "arpa_metro_cities": "$2,726,470,825", "arpa_units": "$742,179,391", "arpa_total": "$14,057,682,841", "treasury_capital_fund": "$253,682,328", "rdof_phase_one": "$378,260,120", "high_cost_support": "$133,522,945", "rus_reconnect": "$62,545,551", "grand_total": "$14,885,693,785"}, "IN": {"arpa_state": "$3,071,830,673", "arpa_counties": "$1,307,654,622", "arpa_metro_cities": "$847,639,658", "arpa_units": "$432,551,280", "arpa_total": "$5,659,676,233", "treasury_capital_fund": "$203,132,429", "rdof_phase_one": "$169,171,546", "high_cost_support": "$125,640,522", "rus_reconnect": "$4,956,660", "grand_total": "$6,162,577,389"}, "IA": {"arpa_state": "$1,480,862,558", "arpa_counties": "$612,835,359", "arpa_metro_cities": "$339,004,380", "arpa_units": "$221,737,821", "arpa_total": "$2,654,440,118", "treasury_capital_fund": "$152,176,435", "rdof_phase_one": "$143,892,544", "high_cost_support": "$226,103,890", "rus_reconnect": "$31,756,457", "grand_total": "$3,208,369,445"}, "KS": {"arpa_state": "$1,583,680,553", "arpa_counties": "$565,877,094", "arpa_metro_cities": "$260,286,572", "arpa_units": "$167,352,563", "arpa_total": "$2,577,196,782", "treasury_capital_fund": "$143,356,521", "rdof_phase_one": "$62,091,517", "high_cost_support": "$173,283,092", "rus_reconnect": "N/A", "grand_total": "$2,955,927,912"}, "KY": {"arpa_state": "$2,183,237,291", "arpa_counties": "$867,793,106", "arpa_metro_cities": "$395,397,702", "arpa_units": "$324,203,207", "arpa_total": "$3,770,631,306", "treasury_capital_fund": "$182,769,205", "rdof_phase_one": "$148,978,767", "high_cost_support": "$157,034,747", "rus_reconnect": "$16,705,914", "grand_total": "$4,276,119,939"}, "LA": {"arpa_state": "$3,011,136,887", "arpa_counties": "$902,973,736", "arpa_metro_cities": "$589,077,802", "arpa_units": "$315,493,318", "arpa_total": "$4,818,681,743", "treasury_capital_fund": "$176,741,864", "rdof_phase_one": "$342,207,315", "high_cost_support": "$82,838,545", "rus_reconnect": "$12,321,244", "grand_total": "$5,432,790,711"}, "ME": {"arpa_state": "$997,495,130", "arpa_counties": "$261,097,422", "arpa_metro_cities": "$121,542,636", "arpa_units": "$119,223,764", "arpa_total": "$1,499,358,952", "treasury_capital_fund": "$128,245,250", "rdof_phase_one": "$71,175,908", "high_cost_support": "$35,445,987", "rus_reconnect": "N/A", "grand_total": "$1,734,226,097"}, "MD": {"arpa_state": "$3,717,212,336", "arpa_counties": "$1,174,302,468", "arpa_metro_cities": "$619,195,908", "arpa_units": "$528,963,161", "arpa_total": "$6,039,673,873", "treasury_capital_fund": "$171,223,815", "rdof_phase_one": "$48,023,089", "high_cost_support": "$3,999,616", "rus_reconnect": "$13,108,229", "grand_total": "$6,276,028,622"}, "MA": {"arpa_state": "$5,286,067,526", "arpa_counties": "$1,338,787,907", "arpa_metro_cities": "$1,664,510,656", "arpa_units": "$385,056,772", "arpa_total": "$8,674,422,861", "treasury_capital_fund": "$175,362,478", "rdof_phase_one": "$32,631,916", "high_cost_support": "$2,946,596", "rus_reconnect": "N/A", "grand_total": "$8,885,363,852"}, "MI": {"arpa_state": "$6,540,417,627", "arpa_counties": "$1,939,829,897", "arpa_metro_cities": "$1,822,870,482", "arpa_units": "$644,291,475", "arpa_total": "$10,947,409,481", "treasury_capital_fund": "$250,630,295", "rdof_phase_one": "$362,985,056", "high_cost_support": "$119,947,238", "rus_reconnect": "$10,289,677", "grand_total": "$11,691,261,746"}, "MN": {"arpa_state": "$2,833,294,345", "arpa_counties": "$1,111,301,984", "arpa_metro_cities": "$644,156,385", "arpa_units": "$376,932,399", "arpa_total": "$4,965,685,113", "treasury_capital_fund": "$180,702,620", "rdof_phase_one": "$408,150,746", "high_cost_support": "$247,830,196", "rus_reconnect": "$3,061,502", "grand_total": "$5,805,430,177"}, "MS": {"arpa_state": "$1,806,373,346", "arpa_counties": "$578,082,050", "arpa_metro_cities": "$101,070,869", "arpa_units": "$268,046,958", "arpa_total": "$2,753,573,223", "treasury_capital_fund": "$162,609,351", "rdof_phase_one": "$491,211,856", "high_cost_support": "$164,531,285", "rus_reconnect": "$20,784,689", "grand_total": "$3,592,710,404"}, "MO": {"arpa_state": "$2,685,296,131", "arpa_counties": "$1,192,123,439", "arpa_metro_cities": "$830,549,274", "arpa_units": "$450,143,657", "arpa_total": "$5,158,112,501", "treasury_capital_fund": "$196,737,544", "rdof_phase_one": "$346,297,660", "high_cost_support": "$212,186,427", "rus_reconnect": "$99,898,686", "grand_total": "$6,013,232,818"}, "MT": {"arpa_state": "$906,418,527", "arpa_counties": "$207,597,597", "arpa_metro_cities": "$49,606,047", "arpa_units": "$86,377,829", "arpa_total": "$1,250,000,000", "treasury_capital_fund": "$119,934,533", "rdof_phase_one": "$125,815,440", "high_cost_support": "$141,971,248", "rus_reconnect": "$10,890,338", "grand_total": "$1,648,611,559"}, "NE": {"arpa_state": "$1,040,157,440", "arpa_counties": "$375,736,074", "arpa_metro_cities": "$176,030,046", "arpa_units": "$111,189,720", "arpa_total": "$1,703,113,280", "treasury_capital_fund": "$128,740,178", "rdof_phase_one": "$60,377,537", "high_cost_support": "$122,845,505", "rus_reconnect": "$3,105,462", "grand_total": "$2,018,181,962"}, "NV": {"arpa_state": "$2,738,837,229", "arpa_counties": "$598,284,192", "arpa_metro_cities": "$291,940,963", "arpa_units": "$150,738,524", "arpa_total": "$3,779,800,908", "treasury_capital_fund": "$135,603,020", "rdof_phase_one": "$63,536,611", "high_cost_support": "$20,416,316", "rus_reconnect": "$7,678,309", "grand_total": "$4,007,035,164"}, "NH": {"arpa_state": "$994,555,878", "arpa_counties": "$264,107,922", "arpa_metro_cities": "$85,984,098", "arpa_units": "$112,208,773", "arpa_total": "$1,456,856,671", "treasury_capital_fund": "$122,066,151", "rdof_phase_one": "$25,257,661", "high_cost_support": "$11,776,757", "rus_reconnect": "N/A", "grand_total": "$1,615,957,239"}, "NJ": {"arpa_state": "$6,244,537,956", "arpa_counties": "$1,827,756,800", "arpa_metro_cities": "$1,189,566,651", "arpa_units": "$578,121,375", "arpa_total": "$9,839,982,782", "treasury_capital_fund": "$194,715,700", "rdof_phase_one": "$10,739,474", "high_cost_support": "$1,352,167", "rus_reconnect": "N/A", "grand_total": "$10,046,790,122"}, "NM": {"arpa_state": "$1,751,542,835", "arpa_counties": "$407,284,450", "arpa_metro_cities": "$171,356,430", "arpa_units": "$126,089,079", "arpa_total": "$2,456,272,794", "treasury_capital_fund": "$133,066,812", "rdof_phase_one": "$161,990,990", "high_cost_support": "$88,084,970", "rus_reconnect": "$20,038,561", "grand_total": "$2,859,454,127"}, "NY": {"arpa_state": "$12,744,981,589", "arpa_counties": "$3,900,063,031", "arpa_metro_cities": "$6,040,655,651", "arpa_units": "$774,248,894", "arpa_total": "$23,459,949,165", "treasury_capital_fund": "$345,548,881", "rdof_phase_one": "$99,891,716", "high_cost_support": "$60,014,848", "rus_reconnect": "$22,004,405", "grand_total": "$23,987,409,014"}, "NC": {"arpa_state": "$5,439,309,692", "arpa_counties": "$2,037,187,362", "arpa_metro_cities": "$668,167,686", "arpa_units": "$705,384,207", "arpa_total": "$8,850,048,947", "treasury_capital_fund": "$273,583,159", "rdof_phase_one": "$166,302,488", "high_cost_support": "$76,015,805", "rus_reconnect": "$29,519,616", "grand_total": "$9,395,470,015"}, "ND": {"arpa_state": "$1,007,502,515", "arpa_counties": "$148,021,613", "arpa_metro_cities": "$41,300,897", "arpa_units": "$53,174,975", "arpa_total": "$1,250,000,000", "treasury_capital_fund": "$113,276,228", "rdof_phase_one": "$20,824,521", "high_cost_support": "$177,266,219", "rus_reconnect": "$15,665,334", "grand_total": "$1,577,032,303"}, "OH": {"arpa_state": "$5,368,386,901", "arpa_counties": "$2,270,470,641", "arpa_metro_cities": "$2,175,200,110", "arpa_units": "$843,726,939", "arpa_total": "$10,657,784,591", "treasury_capital_fund": "$268,578,200", "rdof_phase_one": "$168,289,081", "high_cost_support": "$84,660,559", "rus_reconnect": "N/A", "grand_total": "$11,179,312,432"}, "OK": {"arpa_state": "$1,870,417,576", "arpa_counties": "$768,595,226", "arpa_metro_cities": "$315,826,918", "arpa_units": "$238,432,979", "arpa_total": "$3,193,272,699", "treasury_capital_fund": "$167,683,747", "rdof_phase_one": "$154,545,879", "high_cost_support": "$160,770,573", "rus_reconnect": "$88,666,921", "grand_total": "$3,764,939,818"}, "OR": {"arpa_state": "$2,648,024,988", "arpa_counties": "$819,245,967", "arpa_metro_cities": "$436,927,036", "arpa_units": "$248,351,580", "arpa_total": "$4,152,549,571", "treasury_capital_fund": "$156,795,418", "rdof_phase_one": "$212,027,091", "high_cost_support": "$85,783,600", "rus_reconnect": "$19,928,891", "grand_total": "$4,627,084,571"}, "PA": {"arpa_state": "$7,291,328,098", "arpa_counties": "$2,840,920,418", "arpa_metro_cities": "$2,335,018,856", "arpa_units": "$983,008,128", "arpa_total": "$13,450,275,500", "treasury_capital_fund": "$278,793,641", "rdof_phase_one": "$368,508,054", "high_cost_support": "$58,632,616", "rus_reconnect": "$750,000", "grand_total": "$14,156,959,811"}, "RI": {"arpa_state": "$1,131,061,057", "arpa_counties": "$205,768,455", "arpa_metro_cities": "$272,919,729", "arpa_units": "$58,146,731", "arpa_total": "$1,667,895,972", "treasury_capital_fund": "$112,291,189", "rdof_phase_one": "$1,273,784", "high_cost_support": "$116,168", "rus_reconnect": "N/A", "grand_total": "$1,781,577,113"}, "SC": {"arpa_state": "$2,499,067,328", "arpa_counties": "$1,000,077,338", "arpa_metro_cities": "$191,161,056", "arpa_units": "$435,125,080", "arpa_total": "$4,125,430,802", "treasury_capital_fund": "$185,765,655", "rdof_phase_one": "$120,602,975", "high_cost_support": "$117,694,723", "rus_reconnect": "$13,087,738", "grand_total": "$4,562,581,893"}, "SD": {"arpa_state": "$974,478,793", "arpa_counties": "$171,834,638", "arpa_metro_cities": "$38,440,065", "arpa_units": "$65,246,504", "arpa_total": "$1,250,000,000", "treasury_capital_fund": "$115,898,703", "rdof_phase_one": "$52,285,517", "high_cost_support": "$126,106,214", "rus_reconnect": "$14,916,929", "grand_total": "$1,559,207,363"}, "TN": {"arpa_state": "$3,725,832,113", "arpa_counties": "$1,326,486,991", "arpa_metro_cities": "$516,849,109", "arpa_units": "$438,055,590", "arpa_total": "$6,007,223,803", "treasury_capital_fund": "$215,218,861", "rdof_phase_one": "$148,409,964", "high_cost_support": "$101,242,583", "rus_reconnect": "$27,391,225", "grand_total": "$6,499,486,437"}, "TX": {"arpa_state": "$15,814,388,615", "arpa_counties": "$5,676,347,221", "arpa_metro_cities": "$3,377,178,266", "arpa_units": "$1,386,117,819", "arpa_total": "$26,254,031,921", "treasury_capital_fund": "$500,475,163", "rdof_phase_one": "$362,656,686", "high_cost_support": "$297,254,402", "rus_reconnect": "$4,488,894", "grand_total": "$27,418,907,066"}, "UT": {"arpa_state": "$1,377,866,888", "arpa_counties": "$622,719,759", "arpa_metro_cities": "$289,623,303", "arpa_units": "$186,820,600", "arpa_total": "$2,477,030,550", "treasury_capital_fund": "$137,895,435", "rdof_phase_one": "$31,384,526", "high_cost_support": "$44,028,931", "rus_reconnect": "$32,609,449", "grand_total": "$2,722,948,890"}, "VT": {"arpa_state": "$1,049,287,303", "arpa_counties": "$121,202,550", "arpa_metro_cities": "$20,721,902", "arpa_units": "$58,788,245", "arpa_total": "$1,250,000,000", "treasury_capital_fund": "$113,056,440", "rdof_phase_one": "$32,533,635", "high_cost_support": "$22,754,894", "rus_reconnect": "N/A", "grand_total": "$1,418,344,969"}, "VA": {"arpa_state": "$4,293,727,162", "arpa_counties": "$1,657,924,506", "arpa_metro_cities": "$618,276,089", "arpa_units": "$633,753,549", "arpa_total": "$7,203,681,306", "treasury_capital_fund": "$219,812,354", "rdof_phase_one": "$238,644,934", "high_cost_support": "$80,681,399", "rus_reconnect": "$24,656,284", "grand_total": "$7,767,476,278"}, "WA": {"arpa_state": "$4,427,709,356", "arpa_counties": "$1,479,103,697", "arpa_metro_cities": "$770,396,884", "arpa_units": "$442,823,871", "arpa_total": "$7,120,033,808", "treasury_capital_fund": "$195,749,414", "rdof_phase_one": "$222,768,533", "high_cost_support": "$89,887,096", "rus_reconnect": "$596,781", "grand_total": "$7,629,035,632"}, "WV": {"arpa_state": "$1,355,489,988", "arpa_counties": "$348,103,547", "arpa_metro_cities": "$168,188,715", "arpa_units": "$162,490,814", "arpa_total": "$2,034,273,064", "treasury_capital_fund": "$136,303,698", "rdof_phase_one": "$362,066,660", "high_cost_support": "$59,339,838", "rus_reconnect": "$7,623,751", "grand_total": "$2,599,607,011"}, "WI": {"arpa_state": "$2,533,160,626", "arpa_counties": "$1,130,939,548", "arpa_metro_cities": "$780,300,679", "arpa_units": "$411,577,691", "arpa_total": "$4,855,978,544", "treasury_capital_fund": "$189,354,516", "rdof_phase_one": "$373,669,169", "high_cost_support": "$225,216,319", "rus_reconnect": "$3,095,922", "grand_total": "$5,647,314,470"}, "WY": {"arpa_state": "$1,068,484,768", "arpa_counties": "$112,417,150", "arpa_metro_cities": "$21,307,153", "arpa_units": "$47,790,929", "arpa_total": "$1,250,000,000", "treasury_capital_fund": "$109,467,449", "rdof_phase_one": "$57,471,543", "high_cost_support": "$45,169,396", "rus_reconnect": "$252,786", "grand_total": "$1,462,361,174"}, "US": {"arpa_state": "$195,300,000,000", "arpa_counties": "$64,405,083,428", "arpa_metro_cities": "$44,768,889,940", "arpa_units": "$19,365,865,890", "arpa_total": "$323,839,839,258", "treasury_capital_fund": "$9,641,689,944", "rdof_phase_one": "$9,215,787,981", "high_cost_support": "$4,895,641,284", "rus_reconnect": "$854,489,214", "grand_total": "$348,447,447,681"}}
+  </script>
+
+  <!--
+  <script>
+  var state_funds_data = {
+    "US": {
+      "treasury_arpa": {
+        "state": "195,300,000,000",
+        "county": "64,405,083,428",
+        "metro_cities": "44,768,889,940",
+        "units": "19,365,865,890",
+        "total": "323,839,839,258",
+      },
+      "treasury_capital": "9,641,689,944",
+      "usf": {
+        "rdof_phase_one": "9,215,787,981",
+        "high_cost_support": "4,895,641,284",
+      },
+      "rus_reconnect": "854,489,214",
+      "grand_total": "348,447,447,681",
+      "id": "US",
+      "name": "National",
+    },
+    "AL": {
+      "treasury_arpa": {
+        "state": "2,120,279,417",
+        "county": "952,386,209",
+        "metro_cities": "430,650,620",
+        "units": "356,382,822",
+        "total": "3,859,699,068",
+      },
+      "treasury_capital": "191,887,857",
+      "usf": {
+        "rdof_phase_one": "330,804,828",
+        "high_cost_support": "91,776,553",
+      },
+      "rus_reconnect": "37,460,616",
+      "grand_total": "4,511,628,921",
+      "id": "AL",
+      "name": "Alabama",
+    },
+    "AK": {
+      "treasury_arpa": {
+        "state": "1,011,788,220",
+        "county": "142,094,040",
+        "metro_cities": "52,928,564",
+        "units": "43,189,176",
+        "total": "1,250,000,000",
+      },
+      "treasury_capital": "111,803,893",
+      "usf": {
+        "rdof_phase_one": "0",
+        "high_cost_support": "168,635,227",
+      },
+      "rus_reconnect": "74,788,964",
+      "grand_total": "1,605,228,084",
+      "id": "AK",
+      "name": "Alaska",
+    },
+    "AZ": {
+      "treasury_arpa": {
+        "state": "4,182,827,492",
+        "county": "1,413,805,450",
+        "metro_cities": "1,003,151,239",
+        "units": "226,731,767",
+        "total": "6,826,515,948",
+      },
+      "treasury_capital": "190,220,002",
+      "usf": {
+        "rdof_phase_one": "195,847,668",
+        "high_cost_support": "80,863,475",
+      },
+      "rus_reconnect": "14,888,466",
+      "grand_total": "7,308,335,559",
+      "id": "AZ",
+      "name": "Arizona",
+    },
+    "AR": {
+      "treasury_arpa": {
+        "state": "1,573,121,581",
+        "county": "586,173,048",
+        "metro_cities": "208,848,763",
+        "units": "216,225,138",
+        "total": "2,584,368,530",
+      },
+      "treasury_capital": "158,086,576",
+      "usf": {
+        "rdof_phase_one": "424,243,218",
+        "high_cost_support": "119,642,003",
+      },
+      "rus_reconnect": "11,855,880",
+      "grand_total": "3,298,196,206",
+      "id": "AR",
+      "name": "Arkansas",
+    },
+    "CA": {
+      "treasury_arpa": {
+        "state": "27,017,016,860",
+        "county": "7,674,786,119",
+        "metro_cities": "7,004,519,561",
+        "units": "1,218,261,277",
+        "total": "42,914,583,817",
+      },
+      "treasury_capital": "540,249,909",
+      "usf": {
+        "rdof_phase_one": "695,158,129",
+        "high_cost_support": "159,677,013",
+      },
+      "rus_reconnect": "NA",
+      "grand_total": "44,309,668,868",
+      "id": "CA",
+      "name": "California",
+    },
+    "CO": {
+      "treasury_arpa": {
+        "state": "3,828,761,790",
+        "county": "1,118,566,954",
+        "metro_cities": "551,290,906",
+        "units": "265,396,436",
+        "total": "5,764,016,086",
+      },
+      "treasury_capital": "170,751,674",
+      "usf": {
+        "rdof_phase_one": "249,833,710",
+        "high_cost_support": "63,901,638",
+      },
+      "rus_reconnect": "22,926,890",
+      "grand_total": "6,271,429,998",
+      "id": "CO",
+      "name": "Colorado",
+    },
+    "CT": {
+      "treasury_arpa": {
+        "state": "2,812,288,082",
+        "county": "692,515,202",
+        "metro_cities": "661,392,193",
+        "units": "202,744,874",
+        "total": "4,368,940,351",
+      },
+      "treasury_capital": "141,932,612",
+      "usf": {
+        "rdof_phase_one": "4,210,411",
+        "high_cost_support": "435,139",
+      },
+      "rus_reconnect": "NA",
+      "grand_total": "4,515,518,513",
+      "id": "CT",
+      "name": "Connecticut"
+    },
+    "DE": {
+      "treasury_arpa": {
+        "state": "924,597,608",
+        "county": "189,142,241",
+        "metro_cities": "63,965,037",
+        "units": "90,583,517",
+        "total": "1,268,288,403",
+      },
+      "treasury_capital": "112,839,386",
+      "usf": {
+        "rdof_phase_one": "13,300,968",
+        "high_cost_support": "301,509",
+      },
+      "rus_reconnect": "NA",
+      "grand_total": "1,394,730,266",
+      "id": "DE",
+      "name": "Delaware",
+    },
+    "DC": {
+      "treasury_arpa": {
+        "state": "1,802,441,116",
+        "county": "137,083,470",
+        "metro_cities": "372,859,344",
+        "units": "0",
+        "total": "2,312,383,930",
+      },
+      "treasury_capital": "106,967,456",
+      "usf": {
+        "rdof_phase_one": "0",
+        "high_cost_support": "0",
+      },
+      "rus_reconnect": "NA",
+      "grand_total": "2,419,351,386",
+      "id": "DC",
+      "name": "District Of Columbia"
+    },
+    "FL": {
+      "treasury_arpa": {
+        "state": "8,816,581,839",
+        "county": "4,171,798,633",
+        "metro_cities": "1,517,703,957",
+        "units": "1,416,425,123",
+        "total": "15,922,509,552",
+      },
+      "treasury_capital": "366,036,869",
+      "usf": {
+        "rdof_phase_one": "191,751,820",
+        "high_cost_support": "41,546,064",
+      },
+      "rus_reconnect": "NA",
+      "grand_total": "16,521,844,304",
+      "id": "FL",
+      "name": "Florida",
+    },
+    "GA": {
+      "treasury_arpa": {
+        "state": "4,853,535,460",
+        "county": "2,072,390,644",
+        "metro_cities": "576,059,064",
+        "units": "861,827,586",
+        "total": "8,363,812,754",
+      },
+      "treasury_capital": "259,875,389",
+      "usf": {
+        "rdof_phase_one": "326,454,112",
+        "high_cost_support": "120,486,973",
+      },
+      "rus_reconnect": "38,324,056",
+      "grand_total": "9,108,953,284",
+      "id": "GA",
+      "name": "Georgia",
+    },
+    "HI": {
+      "treasury_arpa": {
+        "state": "1,641,602,610",
+        "county": "275,016,538",
+        "metro_cities": "196,954,703",
+        "units": "46,191,175",
+        "total": "2,159,765,026",
+      },
+      "treasury_capital": "115,475,318",
+      "usf": {
+        "rdof_phase_one": "24,740,782",
+        "high_cost_support": "8,056,446",
+      },
+      "rus_reconnect": "NA",
+      "grand_total": "2,308,037,572",
+      "id": "HI",
+      "name": "Hawaii",
+    },
+    "ID": {
+      "treasury_arpa": {
+        "state": "1,094,018,353",
+        "county": "347,116,427",
+        "metro_cities": "123,848,501",
+        "units": "107,940,808",
+        "total": "1,672,924,089",
+      },
+      "treasury_capital": "128,518,323",
+      "usf": {
+        "rdof_phase_one": "112,489,828",
+        "high_cost_support": "55,925,013",
+      },
+      "rus_reconnect": "31,848,137",
+      "grand_total": "2,001,705,390",
+      "id": "ID",
+      "name": "Idaho",
+    },
+    "IL": {
+      "treasury_arpa": {
+        "state": "8,127,679,949",
+        "county": "2,461,352,676",
+        "metro_cities": "2,726,470,825",
+        "units": "742,179,391",
+        "total": "14,057,682,841",
+      },
+      "treasury_capital": "253,682,328",
+      "usf": {
+        "rdof_phase_one": "378,260,120",
+        "high_cost_support": "133,522,945",
+      },
+      "rus_reconnect": "62,545,551",
+      "grand_total": "14,885,693,785",
+      "id": "IL",
+      "name": "Illinois",
+    },
+    "IN": {
+      "treasury_arpa": {
+        "state": "3,071,830,673",
+        "county": "1,307,654,622",
+        "metro_cities": "847,639,658",
+        "units": "432,551,280",
+        "total": "5,659,676,233",
+      },
+      "treasury_capital": "203,132,429",
+      "usf": {
+        "rdof_phase_one": "169,171,546",
+        "high_cost_support": "125,640,522",
+      },
+      "rus_reconnect": "4,956,660",
+      "grand_total": "6,162,577,389",
+      "id": "IN",
+      "name": "Indiana",
+    },
+    "IA": {
+      "treasury_arpa": {
+        "state": "1,480,862,558",
+        "county": "612,835,359",
+        "metro_cities": "339,004,380",
+        "units": "221,737,821",
+        "total": "2,654,440,118",
+      },
+      "treasury_capital": "152,176,435",
+      "usf": {
+        "rdof_phase_one": "143,892,544",
+        "high_cost_support": "226,103,890",
+      },
+      "rus_reconnect": "31,756,457",
+      "grand_total": "3,208,369,445",
+      "id": "IA",
+      "name": "Iowa",
+    },
+    "KS": {
+      "treasury_arpa": {
+        "state": "1,583,680,553",
+        "county": "565,877,094",
+        "metro_cities": "260,286,572",
+        "units": "167,352,563",
+        "total": "2,577,196,782",
+      },
+      "treasury_capital": "143,356,521",
+      "usf": {
+        "rdof_phase_one": "62,091,517",
+        "high_cost_support": "173,283,092",
+      },
+      "rus_reconnect": "NA",
+      "grand_total": "2,955,927,912",
+      "id": "KS",
+      "name": "Kansas",
+    },
+    "KY": {
+      "treasury_arpa": {
+        "state": "2,183,237,291",
+        "county": "867,793,106",
+        "metro_cities": "395,397,702",
+        "units": "324,203,207",
+        "total": "3,770,631,306",
+      },
+      "treasury_capital": "182,769,205",
+      "usf": {
+        "rdof_phase_one": "148,978,767",
+        "high_cost_support": "157,034,747",
+      },
+      "rus_reconnect": "16,705,914",
+      "grand_total": "4,276,119,939",
+      "id": "KY",
+      "name": "Kentucky",
+    },
+    "LA": {
+      "treasury_arpa": {
+        "state": "3,011,136,887",
+        "county": "902,973,736",
+        "metro_cities": "589,077,802",
+        "units": "315,493,318",
+        "total": "4,818,681,743",
+      },
+      "treasury_capital": "176,741,864",
+      "usf": {
+        "rdof_phase_one": "342,207,315",
+        "high_cost_support": "82,838,545",
+      },
+      "rus_reconnect": "12,321,244",
+      "grand_total": "5,432,790,711",
+      "id": "LA",
+      "name": "Louisiana",
+    },
+    "ME": {
+      "treasury_arpa": {
+        "state": "997,495,130",
+        "county": "261,097,422",
+        "metro_cities": "121,542,636",
+        "units": "119,223,764",
+        "total": "1,499,358,952",
+      },
+      "treasury_capital": "128,245,250",
+      "usf": {
+        "rdof_phase_one": "71,175,908",
+        "high_cost_support": "35,445,987",
+      },
+      "rus_reconnect": "NA",
+      "grand_total": "1,734,226,097",
+      "id": "ME",
+      "name": "Maine",
+    },
+    "MD": {
+      "treasury_arpa": {
+        "state": "3,717,212,336",
+        "county": "1,174,302,468",
+        "metro_cities": "619,195,908",
+        "units": "528,963,161",
+        "total": "6,039,673,873",
+      },
+      "treasury_capital": "171,223,815",
+      "usf": {
+        "rdof_phase_one": "48,023,089",
+        "high_cost_support": "3,999,616",
+      },
+      "rus_reconnect": "13,108,229",
+      "grand_total": "6,276,028,622",
+      "id": "MD",
+      "name": "Maryland",
+    },
+    "MA": {
+      "treasury_arpa": {
+        "state": "5,286,067,526",
+        "county": "1,338,787,907",
+        "metro_cities": "1,664,510,656",
+        "units": "385,056,772",
+        "total": "8,674,422,861",
+      },
+      "treasury_capital": "175,362,478",
+      "usf": {
+        "rdof_phase_one": "32,631,916",
+        "high_cost_support": "2,946,596",
+      },
+      "rus_reconnect": "NA",
+      "grand_total": "8,885,363,852",
+      "id": "MA",
+      "name": "Massachusetts",
+    },
+    "MI": {
+      "treasury_arpa": {
+        "state": "6,540,417,627",
+        "county": "1,939,829,897",
+        "metro_cities": "1,822,870,482",
+        "units": "644,291,475",
+        "total": "10,947,409,481",
+      },
+      "treasury_capital": "250,630,295",
+      "usf": {
+        "rdof_phase_one": "362,985,056",
+        "high_cost_support": "119,947,238",
+      },
+      "rus_reconnect": "10,289,677",
+      "grand_total": "11,691,261,746",
+      "id": "MI",
+      "name": "Michigan",
+    },
+    "MN": {
+      "treasury_arpa": {
+        "state": "2,833,294,345",
+        "county": "1,111,301,984",
+        "metro_cities": "644,156,385",
+        "units": "376,932,399",
+        "total": "4,965,685,113",
+      },
+      "treasury_capital": "180,702,620",
+      "usf": {
+        "rdof_phase_one": "408,150,746",
+        "high_cost_support": "247,830,196",
+      },
+      "rus_reconnect": "3,061,502",
+      "grand_total": "5,805,430,177",
+      "id": "MN",
+      "name": "Minnesota",
+    },
+    "MS": {
+      "treasury_arpa": {
+        "state": "1,806,373,346",
+        "county": "578,082,050",
+        "metro_cities": "101,070,869",
+        "units": "268,046,958",
+        "total": "2,753,573,223",
+      },
+      "treasury_capital": "162,609,351",
+      "usf": {
+        "rdof_phase_one": "491,211,856",
+        "high_cost_support": "164,531,285",
+      },
+      "rus_reconnect": "20,784,689",
+      "grand_total": "3,592,710,404",
+      "id": "MS",
+      "name": "Mississippi",
+    },
+    "MO": {
+      "treasury_arpa": {
+        "state": "2,685,296,131",
+        "county": "1,192,123,439",
+        "metro_cities": "830,549,274",
+        "units": "450,143,657",
+        "total": "5,158,112,501",
+      },
+      "treasury_capital": "196,737,544",
+      "usf": {
+        "rdof_phase_one": "346,297,660",
+        "high_cost_support": "212,186,427",
+      },
+      "rus_reconnect": "99,898,686",
+      "grand_total": "6,013,232,818",
+      "id": "MO",
+      "name": "Missouri",
+    },
+    "MT": {
+      "treasury_arpa": {
+        "state": "906,418,527",
+        "county": "207,597,597",
+        "metro_cities": "49,606,047",
+        "units": "86,377,829",
+        "total": "1,250,000,000",
+      },
+      "treasury_capital": "119,934,533",
+      "usf": {
+        "rdof_phase_one": "125,815,440",
+        "high_cost_support": "141,971,248",
+      },
+      "rus_reconnect": "10,890,338",
+      "grand_total": "1,648,611,559",
+      "id": "MT",
+      "name": "Montana",
+    },
+    "NE": {
+      "treasury_arpa": {
+        "state": "1,040,157,440",
+        "county": "375,736,074",
+        "metro_cities": "176,030,046",
+        "units": "111,189,720",
+        "total": "1,703,113,280",
+      },
+      "treasury_capital": "128,740,178",
+      "usf": {
+        "rdof_phase_one": "60,377,537",
+        "high_cost_support": "122,845,505",
+      },
+      "rus_reconnect": "3,105,462",
+      "grand_total": "2,018,181,962",
+      "id": "NE",
+      "name": "Nebraska",
+    },
+    "NV": {
+      "treasury_arpa": {
+        "state": "2,738,837,229",
+        "county": "598,284,192",
+        "metro_cities": "291,940,963",
+        "units": "150,738,524",
+        "total": "3,779,800,908",
+      },
+      "treasury_capital": "135,603,020",
+      "usf": {
+        "rdof_phase_one": "63,536,611",
+        "high_cost_support": "20,416,316",
+      },
+      "rus_reconnect": "7,678,309",
+      "grand_total": "4,007,035,164",
+      "id": "NV",
+      "name": "Nevada",
+    },
+    "NH": {
+      "treasury_arpa": {
+        "state": "994,555,878",
+        "county": "264,107,922",
+        "metro_cities": "85,984,098",
+        "units": "112,208,773",
+        "total": "1,456,856,671",
+      },
+      "treasury_capital": "122,066,151",
+      "usf": {
+        "rdof_phase_one": "25,257,661",
+        "high_cost_support": "11,776,757",
+      },
+      "rus_reconnect": "NA",
+      "grand_total": "1,615,957,239",
+      "id": "NH",
+      "name": "New Hampshire",
+    },
+    "NJ": {
+      "treasury_arpa": {
+        "state": "6,244,537,956",
+        "county": "1,827,756,800",
+        "metro_cities": "1,189,566,651",
+        "units": "578,121,375",
+        "total": "9,839,982,782",
+      },
+      "treasury_capital": "194,715,700",
+      "usf": {
+        "rdof_phase_one": "10,739,474",
+        "high_cost_support": "1,352,167",
+      },
+      "rus_reconnect": "NA",
+      "grand_total": "10,046,790,122",
+      "id": "NJ",
+      "name": "New Jersey",
+    },
+    "NM": {
+      "treasury_arpa": {
+        "state": "1,751,542,835",
+        "county": "407,284,450",
+        "metro_cities": "171,356,430",
+        "units": "126,089,079",
+        "total": "2,456,272,794",
+      },
+      "treasury_capital": "133,066,812",
+      "usf": {
+        "rdof_phase_one": "161,990,990",
+        "high_cost_support": "88,084,970",
+      },
+      "rus_reconnect": "20,038,561",
+      "grand_total": "2,859,454,127",
+      "id": "NM",
+      "name": "New Mexico",
+    },
+    "NY": {
+      "treasury_arpa": {
+        "state": "12,744,981,589",
+        "county": "3,900,063,031",
+        "metro_cities": "6,040,655,651",
+        "units": "774,248,894",
+        "total": "23,459,949,165",
+      },
+      "treasury_capital": "345,548,881",
+      "usf": {
+        "rdof_phase_one": "99,891,716",
+        "high_cost_support": "60,014,848",
+      },
+      "rus_reconnect": "22,004,405",
+      "grand_total": "23,987,409,014",
+      "id": "NY",
+      "name": "New York",
+    },
+    "NC": {
+      "treasury_arpa": {
+        "state": "5,439,309,692",
+        "county": "2,037,187,362",
+        "metro_cities": "668,167,686",
+        "units": "705,384,207",
+        "total": "8,850,048,947",
+      },
+      "treasury_capital": "273,583,159",
+      "usf": {
+        "rdof_phase_one": "166,302,488",
+        "high_cost_support": "76,015,805",
+      },
+      "rus_reconnect": "29,519,616",
+      "grand_total": "9,395,470,015",
+      "id": "NC",
+      "name": "North Carolina",
+    },
+    "ND": {
+      "treasury_arpa": {
+        "state": "1,007,502,515",
+        "county": "148,021,613",
+        "metro_cities": "41,300,897",
+        "units": "53,174,975",
+        "total": "1,250,000,000",
+      },
+      "treasury_capital": "113,276,228",
+      "usf": {
+        "rdof_phase_one": "20,824,521",
+        "high_cost_support": "177,266,219",
+      },
+      "rus_reconnect": "15,665,334",
+      "grand_total": "1,577,032,303",
+      "id": "ND",
+      "name": "North Dakota",
+    },
+    "OH": {
+      "treasury_arpa": {
+        "state": "5,368,386,901",
+        "county": "2,270,470,641",
+        "metro_cities": "2,175,200,110",
+        "units": "843,726,939",
+        "total": "10,657,784,591",
+      },
+      "treasury_capital": "268,578,200",
+      "usf": {
+        "rdof_phase_one": "168,289,081",
+        "high_cost_support": "84,660,559",
+      },
+      "rus_reconnect": "NA",
+      "grand_total": "11,179,312,432",
+      "id": "OH",
+      "name": "Ohio",
+    },
+    "OK": {
+      "treasury_arpa": {
+        "state": "1,870,417,576",
+        "county": "768,595,226",
+        "metro_cities": "315,826,918",
+        "units": "238,432,979",
+        "total": "3,193,272,699",
+      },
+      "treasury_capital": "167,683,747",
+      "usf": {
+        "rdof_phase_one": "154,545,879",
+        "high_cost_support": "160,770,573",
+      },
+      "rus_reconnect": "88,666,921",
+      "grand_total": "3,764,939,818",
+      "id": "OK",
+      "name": "Oklahoma",
+    },
+    "OR": {
+      "treasury_arpa": {
+        "state": "2,648,024,988",
+        "county": "819,245,967",
+        "metro_cities": "436,927,036",
+        "units": "248,351,580",
+        "total": "4,152,549,571",
+      },
+      "treasury_capital": "156,795,418",
+      "usf": {
+        "rdof_phase_one": "212,027,091",
+        "high_cost_support": "85,783,600",
+      },
+      "rus_reconnect": "19,928,891",
+      "grand_total": "4,627,084,571",
+      "id": "OR",
+      "name": "Oregon",
+    },
+    "PA": {
+      "treasury_arpa": {
+        "state": "7,291,328,098",
+        "county": "2,840,920,418",
+        "metro_cities": "2,335,018,856",
+        "units": "983,008,128",
+        "total": "13,450,275,500",
+      },
+      "treasury_capital": "278,793,641",
+      "usf": {
+        "rdof_phase_one": "368,508,054",
+        "high_cost_support": "58,632,616",
+      },
+      "rus_reconnect": "750,000",
+      "grand_total": "14,156,959,811",
+      "id": "PA",
+      "name": "Pennsylvania",
+    },
+    "RI": {
+      "treasury_arpa": {
+        "state": "1,131,061,057",
+        "county": "205,768,455",
+        "metro_cities": "272,919,729",
+        "units": "58,146,731",
+        "total": "1,667,895,972",
+      },
+      "treasury_capital": "112,291,189",
+      "usf": {
+        "rdof_phase_one": "1,273,784",
+        "high_cost_support": "116,168",
+      },
+      "rus_reconnect": "NA",
+      "grand_total": "1,781,577,113",
+      "id": "RI",
+      "name": "Rhode Island",
+    },
+    "SC": {
+      "treasury_arpa": {
+        "state": "2,499,067,329",
+        "county": "1,000,077,338",
+        "metro_cities": "191,161,056",
+        "units": "435,125,080",
+        "total": "4,125,430,803",
+      },
+      "treasury_capital": "185,765,655",
+      "usf": {
+        "rdof_phase_one": "120,602,975",
+        "high_cost_support": "117,694,723",
+      },
+      "rus_reconnect": "13,087,738",
+      "grand_total": "4,562,581,893",
+      "id": "SC",
+      "name": "South Carolina",
+    },
+    "SD": {
+      "treasury_arpa": {
+        "state": "974,478,793",
+        "county": "171,834,638",
+        "metro_cities": "38,440,065",
+        "units": "65,246,504",
+        "total": "1,250,000,000",
+      },
+      "treasury_capital": "115,898,703",
+      "usf": {
+        "rdof_phase_one": "52,285,517",
+        "high_cost_support": "126,106,214",
+      },
+      "rus_reconnect": "14,916,929",
+      "grand_total": "1,559,207,363",
+      "id": "SD",
+      "name": "South Dakota",
+    },
+    "TN": {
+      "treasury_arpa": {
+        "state": "3,725,832,113",
+        "county": "1,326,486,991",
+        "metro_cities": "516,849,109",
+        "units": "438,055,590",
+        "total": "6,007,223,803",
+      },
+      "treasury_capital": "215,218,861",
+      "usf": {
+        "rdof_phase_one": "148,409,964",
+        "high_cost_support": "101,242,583",
+      },
+      "rus_reconnect": "27,391,225",
+      "grand_total": "6,499,486,437",
+      "id": "TN",
+      "name": "Tennessee",
+    },
+    "TX": {
+      "treasury_arpa": {
+        "state": "15,814,388,615",
+        "county": "5,676,347,221",
+        "metro_cities": "3,377,178,266",
+        "units": "1,386,117,819",
+        "total": "26,254,031,921",
+      },
+      "treasury_capital": "500,475,163",
+      "usf": {
+        "rdof_phase_one": "362,656,686",
+        "high_cost_support": "297,254,402",
+      },
+      "rus_reconnect": "4,488,894",
+      "grand_total": "27,418,907,066",
+      "id": "TX",
+      "name": "Texas",
+    },
+    "UT": {
+      "treasury_arpa": {
+        "state": "1,377,866,888",
+        "county": "622,719,759",
+        "metro_cities": "289,623,303",
+        "units": "186,820,600",
+        "total": "2,477,030,550",
+      },
+      "treasury_capital": "137,895,435",
+      "usf": {
+        "rdof_phase_one": "31,384,526",
+        "high_cost_support": "44,028,931",
+      },
+      "rus_reconnect": "32,609,449",
+      "grand_total": "2,722,948,890",
+      "id": "UT",
+      "name": "Utah",
+    },
+    "VT": {
+      "treasury_arpa": {
+        "state": "1,049,287,303",
+        "county": "121,202,550",
+        "metro_cities": "20,721,902",
+        "units": "58,788,245",
+        "total": "1,250,000,000",
+      },
+      "treasury_capital": "113,056,440",
+      "usf": {
+        "rdof_phase_one": "32,533,635",
+        "high_cost_support": "22,754,894",
+      },
+      "rus_reconnect": "NA",
+      "grand_total": "1,418,344,969",
+      "id": "VT",
+      "name": "Vermont",
+    },
+    "VA": {
+      "treasury_arpa": {
+        "state": "4,293,727,162",
+        "county": "1,657,924,506",
+        "metro_cities": "618,276,089",
+        "units": "633,753,549",
+        "total": "7,203,681,306",
+      },
+      "treasury_capital": "219,812,354",
+      "usf": {
+        "rdof_phase_one": "238,644,934",
+        "high_cost_support": "80,681,399",
+      },
+      "rus_reconnect": "24,656,284",
+      "grand_total": "7,767,476,278",
+      "id": "VA",
+      "name": "Virginia",
+    },
+    "WA": {
+      "treasury_arpa": {
+        "state": "4,427,709,356",
+        "county": "1,479,103,697",
+        "metro_cities": "770,396,884",
+        "units": "442,823,871",
+        "total": "7,120,033,808",
+      },
+      "treasury_capital": "195,749,414",
+      "usf": {
+        "rdof_phase_one": "222,768,533",
+        "high_cost_support": "89,887,096",
+      },
+      "rus_reconnect": "596,781",
+      "grand_total": "7,629,035,632",
+      "id": "WA",
+      "name": "Washington",
+    },
+    "WV": {
+      "treasury_arpa": {
+        "state": "1,355,489,988",
+        "county": "348,103,547",
+        "metro_cities": "168,188,715",
+        "units": "162,490,814",
+        "total": "2,034,273,064",
+      },
+      "treasury_capital": "136,303,698",
+      "usf": {
+        "rdof_phase_one": "362,066,660",
+        "high_cost_support": "59,339,838",
+      },
+      "rus_reconnect": "7,623,751",
+      "grand_total": "2,599,607,011",
+      "id": "WV",
+      "name": "West Virginia",
+    },
+    "WI": {
+      "treasury_arpa": {
+        "state": "2,533,160,627",
+        "county": "1,130,939,548",
+        "metro_cities": "780,300,679",
+        "units": "411,577,691",
+        "total": "4,855,978,545",
+      },
+      "treasury_capital": "189,354,516",
+      "usf": {
+        "rdof_phase_one": "373,669,169",
+        "high_cost_support": "225,216,319",
+      },
+      "rus_reconnect": "3,095,922",
+      "grand_total": "5,647,314,470",
+      "id": "WI",
+      "name": "Wisconsin",
+    },
+    "WY": {
+      "treasury_arpa": {
+        "state": "1,068,484,768",
+        "county": "112,417,150",
+        "metro_cities": "21,307,153",
+        "units": "47,790,929",
+        "total": "1,250,000,000",
+      },
+      "treasury_capital": "109,467,449",
+      "usf": {
+        "rdof_phase_one": "57,471,543",
+        "high_cost_support": "45,169,396",
+      },
+      "rus_reconnect": "252,786",
+      "grand_total": "1,462,361,174",
+      "id": "WY",
+      "name": "Wyoming",
+    }
+  }
+
+  </script>
+-->
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/d3.v3.min.js"></script>
+  <script src="js/select2.min.js"></script>
+  <script src="js/map.js"></script>
+
+</body>
+
+</html>

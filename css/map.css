@@ -1,0 +1,336 @@
+
+path.state {
+  cursor: pointer;
+}
+
+.state-funds-map svg {
+  width: 100%;
+  height: initial;
+}
+
+.state-funds-map__text {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.state-funds-map__wrap {
+  position: relative;
+}
+
+.state-funds-map__state-filter {
+  max-width: 500px;
+}
+
+.state-funds-map__data-col-section {
+  margin-top: 20px;
+}
+
+.state-funds-map__data-col-text {
+  margin-bottom: 10px;
+}
+
+.state-funds-map__data-col-title {
+  color: #00587c;
+  border-bottom: 1px solid #00587c;
+  margin-bottom: 10px;
+  margin-top: 0;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.state-funds-map__data-col-item {
+  font-size: 18px;
+  line-height: 20px;
+  margin-top: 7px;
+}
+
+.state-funds-map__data-col-item:first-child {
+  margin-top: 0;
+}
+
+.state-funds-map__data-col-item-label {
+  font-weight: bold;
+}
+
+.state-funds-map .state {
+  fill: #006BA6;
+}
+
+.state-funds-map .state.active-hover,
+.state-funds-map .state.active {
+  fill: #84329B;
+}
+
+.small-states-wrap {
+  position: absolute;
+  right: -10px;
+  top: 180px;
+}
+
+.small-state {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.small-state__box {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  background-color: #006BA6;
+  cursor: pointer;
+}
+
+.small-state__box.active-state {
+  background-color: #84329B;
+}
+
+.small-state__box:hover {
+  background-color: #84329B;
+}
+
+.small-state__box-text {
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.state-funds-map__notes-section {
+  margin-top: 40px;
+}
+
+.state-funds-map__notes-title {
+  color: #343F49;
+  margin-bottom: 10px;
+  margin-top: 0;
+  font-size: 20px;
+  line-height: 24px;
+  display: inline-block;
+}
+
+.state-funds-map__note {
+  margin-top: 5px;
+}
+
+.state-funds-map__note:first-child {
+  margin-top: 0;
+  padding-left: 11px;
+  text-indent: -11px;
+}
+
+.state-funds-map__note:last-child {
+  padding-left: 13px;
+  text-indent: -13px;
+}
+
+.state-funds-map__outer-wrap {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.state-funds-map__outer-wrap .select2-container--default {
+  width: 100% !important;
+}
+
+.state-funds-map__outer-wrap .select2-container--default .select2-selection--single {
+  border: 1px solid #343F49;
+  border-radius: 0;
+  font-size: 18px;
+  height: 48px;
+}
+
+.state-funds-map__outer-wrap .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 26px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 20px;
+}
+
+.state-funds-map__outer-wrap .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #006BA6;
+    padding-top: 8px;
+    padding-left: 25px;
+    padding-right: 40px;
+    font-size: 24px;
+}
+
+.state-funds-map__outer-wrap .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-style: initial;
+    border-width: 0;
+    border-color: initial;
+    margin-left: 0;
+    margin-top: 0;
+    left: auto;
+    right: 25px;
+    top: 50%;
+    height: 12px;
+    width: 12px;
+    position: absolute;
+    border-bottom: 3px solid #006BA6 !important;
+    border-right: 3px solid #006BA6 !important;
+    transform-origin: 66% 66%;
+    transform: rotate(45deg);
+    transition: all .15s ease-in-out;
+}
+
+.select2-dropdown.select2-dropdown--above .select2-results__option[aria-selected=true],
+.select2-dropdown.select2-dropdown--below .select2-results__option[aria-selected=true] {
+    font-weight: 700;
+}
+
+.select2-dropdown .select2-results__option[aria-selected=true] {
+    background-color: transparent;
+    color: #A5BBC3;
+    background-repeat: no-repeat;
+    background-position: 92% 41%;
+    background-size: 14px;
+    padding-right: 25px;
+}
+
+.select2-dropdown .select2-results__option:hover {
+    background-color: #eee !important;
+    color: #343F49;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #eee !important;
+    color: #343F49;
+}
+
+.logged-in.admin-bar .select2-container--open .select2-dropdown {
+  top: 32px;
+}
+
+@media (max-width: 782px) {
+  .logged-in.admin-bar .select2-container--open .select2-dropdown {
+    top: 46px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .state-funds-map__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .state-funds-map__data-col {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 340px;
+    flex: 0 1 340px;
+  }
+
+  .state-funds-map__wrap {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    margin-left: 30px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .state-funds-map {
+    margin-top: 20px;
+  }
+
+  .state-funds-map__outer-wrap {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 850px) and (max-width: 1200px) {
+  .state-funds-map__notes-section {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 1199px) {
+  .state-funds-map__data-col-sections-wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .state-funds-map__data-col-section {
+    width: 48%;
+  }
+
+  .state-funds-map__data-col-section:nth-child(odd) {
+    margin-right: 4%;
+  }
+}
+
+@media (max-width: 767px) {
+  .state-funds-map__data-col-title {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  .state-funds-map__data-col-item {
+    font-size: 16px;
+    line-height: 18px;
+    margin-top: 5px;
+  }
+}
+
+@media (min-width: 850px) and (max-width: 1199px) {
+  .small-states-wrap {
+    right: 0;
+    top: 260px;
+  }
+}
+
+@media (max-width: 849px) {
+  .small-states-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    position: static;
+    width: auto;
+  }
+
+  .small-state {
+    display: block;
+    margin-right: 10px;
+    text-align: center;
+  }
+
+  .small-state:last-child {
+    margin-right: 0;
+  }
+
+  .small-state__box {
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 5px;
+  }
+
+  .small-state__box-text {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .state-funds-map__notes-section {
+    margin-top: 10px;
+  }
+}
+
+/* override styles when printing */
+@media print {
+
+  #topMenuContainer,
+  #site-footer,
+  #site-header .morebutton,
+  .small-states-wrap {
+    display: none;
+  }
+
+  .container a.brand img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+}
