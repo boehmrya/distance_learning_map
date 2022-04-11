@@ -9,3 +9,42 @@ body {
   margin: 0 auto;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 45px;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 0 22px;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .container {
+    width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1140px;
+  }
+}
+
+@media (min-width: 1300px) {
+  .container {
+    width: 1250px;
+  }
+}

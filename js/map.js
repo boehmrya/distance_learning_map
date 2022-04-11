@@ -67,157 +67,172 @@ var small_states =  {
 };
 
 
+
 jQuery(function($){
 
-  var w, width, height, mapRatio;
 
-  w = window.innerWidth;
+  function drawMap(w) {
 
-  //Width and height of map
-  width = parseInt(d3.select('.state-funds-map').style('width'));
-  mapRatio = .71
-  height = width * mapRatio;
-  viewBox = "0 0 " + width + " " + height;
+    //Width and height of map
+    var width = parseInt(d3.select('#state-map').style('width'));
+    var mapRatio = .65
+    var height = width * mapRatio;
+    var viewBox = "0 0 " + width + " " + height;
 
-  // D3 Projection
-  var projection = d3.geo.albersUsa()
-  				   .translate([width/2, height/2.2])    // translate to center of screen
-  				   .scale([1.4 * width]);          // scale things down so see entire US
+    // D3 Projection
+    var projection = d3.geo.albersUsa()
+    				   .translate([width/2, height/2])    // translate to center of screen
+    				   .scale([1.4 * width]);          // scale things down so see entire US
 
-  // Define path generator
-  var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
-  		  	 .projection(projection);  // tell path generator to use albersUsa projection
-
-
-  //Create SVG element and append map to the SVG
-  var svg = d3.select(".state-funds-map")
-  			.append("svg")
-  			.attr("width", width)
-  			.attr("height", height)
-        .attr("preserveAspectRatio", "xMinYMin meet")
-        .attr("viewBox", viewBox);
-
-  // Load GeoJSON for US States
-  //d3.json("/wp-content/themes/particle/assets/maps/us-states.json", function(json) {
-  d3.json("../maps/us-states.json", function(json) {
+    // Define path generator
+    var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
+    		  	 .projection(projection);  // tell path generator to use albersUsa projection
 
 
-    // Bind the data to the SVG and create one path per GeoJSON feature
-    // This builds the map
-    svg.selectAll("path")
-      .data(json.features)
-      .enter()
-      .append("path")
-      .attr("d", path)
-      .attr("id", function(d) { return state_id[d.id]; })
-      .attr("class", 'state')
-      .style("cursor", "pointer")
-      .style("stroke", "rgb(255,255,255)")
-      .style("stroke-width", "1.5")
-      .on('mouseover', function(d, i) {
-        d3.select(this).classed('active-hover', true);
-      })
-      .on('mouseout', function(d, i) {
-        d3.select(this).classed('active-hover', false);
-      })
-      .on('click', function(d, i) {
-        // set value in the select list and trigger an on change event
-        $("#filterFormStateSelect").val(state_id[d.id]).trigger('change');
-      });
+    //Create SVG element and append map to the SVG
+    var svg = d3.select("#state-map")
+    			.append("svg")
+          .attr("preserveAspectRatio", "xMinYMin meet")
+          .attr("viewBox", viewBox)
+    			.attr("width", width)
+    			.attr("height", height);
 
-    });
+    // Load GeoJSON for US States
+    //d3.json("/wp-content/themes/explore-beyond/maps/us-states.json", function(json) {
+    d3.json("../maps/us-states.json", function(json) {
 
-    /*
-    var state_funds_data = [];
-    d3.json("../broadband_funding_data.json", function(data) {
-      state_funds_data = data;
-      //console.log(state_funds_data);
-      // initial set-up
+
+      // Bind the data to the SVG and create one path per GeoJSON feature
+      // This builds the map
+      svg.selectAll("path")
+        .data(json.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        .attr("id", function(d) { return state_id[d.id]; })
+        .attr("class", 'state')
+        .style("cursor", "pointer")
+        .style("stroke", "rgb(255,255,255)")
+        .style("stroke-width", "1.5")
+        .on('mouseover', function(d, i) {
+          d3.select(this).classed('active-hover', true);
+        })
+        .on('mouseout', function(d, i) {
+          d3.select(this).classed('active-hover', false);
+        })
+        .on('click', function(d, i) {
+          // update the select list to the chosen state
+          $("#filterFormStateSelect").val(state_id[d.id]).trigger('change');
+        });
 
     });
-    */
 
-    var state_funds_data = JSON.parse(document.getElementById('state-funds-data').innerHTML);
-    console.log(state_funds_data);
+  }
 
-    // trigger map click events on select list change events
-    $("#filterFormStateSelect").change(function() {
-      $("#filterFormStateSelect option:selected").each(function(){
-        var selected = $(this).val();
-        var selected_elem = '.state-funds-map svg #' + selected;
+  function removeMap() {
+    $('#state-map svg').remove();
+  }
 
-        // update the map
-        d3.selectAll('path.state').classed('active', false); // remove active classes
 
-        d3.select(selected_elem).classed('active', true); // add active class to current element
+  // trigger map click events on select list change events
+  $("#filterFormStateSelect").change(function() {
+    $("#filterFormStateSelect option:selected").each(function(){
+      var selected = $(this).val();
+      var selected_elem = '.map__state-map svg #' + selected;
 
-        // update style of small states
-        updateSmallStates(selected);
+      // update the map
+      d3.selectAll('path.state').classed('active', false); // remove active classes
 
-        // update data in sidebar
-        updateData(selected);
-      });
+      d3.select(selected_elem).classed('active', true); // add active class to current element
+
+      // update style of small states
+      updateSmallStates(selected);
+
+      console.log(selected);
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({'event': 'distance_learning_map_state_click',
+                      'distance_learning_map_state_id': selected });
+
+      // update data in sidebar
+      updateData(selected);
+    });
+  });
+
+  // update information in sidebar card
+  // runs when dot is clicked or option in dropdown is selected
+  function updateData(state_id) {
+    // get location from dict
+    var state = data_states_metrics[state_id];
+
+    // fill in cale isps with name and link
+    // first, empty out the block
+    jQuery("#isp-operator-names").empty();
+
+    // Loading provider names into array to allow alpha sorting of provider images (quickfix - this module is not tied to its own Drupal admin sort preference...)
+    var providerNames = [];
+    jQuery.each(data_states_metrics[state_id].providers, function(i,v) {
+         providerNames.push(this.name);
     });
 
-    // trigger events when small boxes are clicked
-    $('.small-state__box').on('click', function() {
-      // clear colors on all existing small boxes
-      $('.small-state__box').removeClass('active-state');
+    providerNames.sort();
 
-      // make the current small state active
-      $(this).addClass('active-state');
-
-      // split the id on the box to get the state abbreviation
-      var box_id = $(this).attr('id');
-      var box_id_parts = box_id.split("-");
-      var box_state = box_id_parts[0];
-
-      // set value in the select list and trigger an on change event
-      $("#filterFormStateSelect").val(box_state).trigger('change');
-    });
-
-    // update information in sidebar card
-    function updateData(state_id) {
-      // get set of data based on state
-      var state_data = state_funds_data[state_id];
-
-      // update html
-      $("#treasury-arpa-state").text(state_data['arpa_state']);
-      $("#treasury-arpa-counties").text(state_data['arpa_counties']);
-      $("#treasury-arpa-metro-cities").text(state_data['arpa_metro_cities']);
-      $("#treasury-arpa-units").text(state_data['arpa_units']);
-      $("#treasury-arpa-total").text(state_data['arpa_total']);
-      $("#treasury-capital-fund").text(state_data['treasury_capital_fund']);
-      $("#usf-rdof-phase-one").text(state_data['rdof_phase_one']);
-      $("#usf-high-cost-support").text(state_data['high_cost_support']);
-      $("#rus-reconnect").text(state_data['rus_reconnect']);
-      $("#grand-total").text(state_data['grand_total']);
-
-      // change arpa states label
-      if (state_id == 'US') {
-        $('#treasury-arpa-states-label').text('States:');
-      }
-      else {
-        $('#treasury-arpa-states-label').text('State:');
-      }
-
-    }
-    // end updateData function
-
-
-    function updateSmallStates(state_abbrev) {
-      // clear colors on all existing small boxes
-      $('.small-state__box').removeClass('active-state');
-
-      // check if it is a small state
-      // if so, find the box and make it active
-      if (small_states.hasOwnProperty(state_abbrev)) {
-        var state_box_id = '#' + state_abbrev + '-Box';
-        $(state_box_id).addClass('active-state');
-      }
+    for(var q=0; q < providerNames.length; q++) {
+        jQuery.each(data_states_metrics[state_id].providers, function(i,v) {
+            if (this.name == providerNames[q]) {
+              jQuery("#isp-operator-names").append("<div class=\"map__provider\"><a class=\"map__provider-link\" href=\"" + this.link + "\" target=\"_blank\">" + this.name + "</a></div>");
+            }
+        });
     }
 
-    $('#filterFormStateSelect').select2();
-    updateData('US');
+    var distanceLearningMapCompanyLink = $('.map__provider-link');
+    distanceLearningMapCompanyLink.on('click', function() {
+      var companyLinkText = $(this).text();
+      console.log(companyLinkText)
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({'event': 'distance_learning_map_company_link_click',
+                      'distance_learning_map_company_link_name': companyLinkText });
+    });
+  }
+  // end updateData function
+
+  // trigger events when small boxes are clicked
+  $('.small-state__box').on('click', function() {
+    // clear colors on all existing small boxes
+    $('.small-state__box').removeClass('active-state');
+
+    // make the current small state active
+    $(this).addClass('active-state');
+
+    // split the id on the box to get the state abbreviation
+    var box_id = $(this).attr('id');
+    var box_id_parts = box_id.split("-");
+    var box_state = box_id_parts[0];
+
+    // set value in the select list and trigger an on change event
+    $("#filterFormStateSelect").val(box_state).trigger('change');
+  });
+
+
+  function updateSmallStates(state_abbrev) {
+    // clear colors on all existing small boxes
+    $('.small-state__box').removeClass('active-state');
+
+    // check if it is a small state
+    // if so, find the box and make it active
+    if (small_states.hasOwnProperty(state_abbrev)) {
+      var state_box_id = '#' + state_abbrev + '-Box';
+      $(state_box_id).addClass('active-state');
+    }
+  }
+
+  // initialize map and data
+  var w = window.innerWidth;
+  if (w > 767) {
+    drawMap(w);
+  }
+  // convert select list into custom menu
+  $('#filterFormStateSelect').select2();
+  updateData('US');
+
 
 });
